@@ -22,14 +22,11 @@
 #
 
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
   has_many :user_announcement
   has_many :locations
 
   enum user_type: %i(animal_lover veterinarian)
 
-  validates :first_name, :last_name, :email, :user_name, :location, :is_personal_confirm, :personal_confirm_date, :is_active, presence: true
+  validates :first_name, :last_name, :email, presence: true
+  # validates :first_name, :last_name, :email, :user_name, :location, :is_personal_confirm, :personal_confirm_date, :is_active, presence: true
 end
