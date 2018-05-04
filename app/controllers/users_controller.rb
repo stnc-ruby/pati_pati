@@ -23,8 +23,8 @@ class UsersController < ApplicationController
     @user.destroy
     # message =  "User has been deleted."
     # json render: { message: message }
-    puts "------"
-    puts "*******"
+    # puts "------"
+    # puts "*******"
   end
 
   private
