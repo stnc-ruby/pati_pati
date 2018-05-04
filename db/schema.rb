@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180425102731) do
+ActiveRecord::Schema.define(version: 20180504081217) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -50,8 +50,12 @@ ActiveRecord::Schema.define(version: 20180425102731) do
     t.integer "help_status"
     t.integer "help_type"
     t.integer "status"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "location_id"
+    t.index ["location_id"], name: "index_announcements_on_location_id"
+    t.index ["user_id"], name: "index_announcements_on_user_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -62,13 +66,11 @@ ActiveRecord::Schema.define(version: 20180425102731) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_announcements", force: :cascade do |t|
+  create_table "supporters", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "announcement_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["announcement_id"], name: "index_user_announcements_on_announcement_id"
-    t.index ["user_id"], name: "index_user_announcements_on_user_id"
+    t.index ["user_id"], name: "index_supporters_on_user_id"
   end
 
   create_table "user_locations", force: :cascade do |t|
@@ -76,28 +78,38 @@ ActiveRecord::Schema.define(version: 20180425102731) do
     t.string "latitude_x"
     t.string "longitude_y"
     t.integer "user_id"
+    t.integer "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_user_locations_on_location_id"
     t.index ["user_id"], name: "index_user_locations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.string "email"
     t.string "phone_number"
-    t.string "user_name"
-    t.string "password"
     t.string "location"
     t.string "location_json"
     t.integer "device_id"
-    t.integer "user_type"
-    t.datetime "registered_date"
+    t.integer "type"
     t.boolean "is_personal_confirm"
     t.datetime "personal_confirm_date"
     t.boolean "is_active", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

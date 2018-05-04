@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
-    @user.save
+    if @user.save
+      message = "User saved."
+      json render: { message: message }
+    else
+      json render: { errors: @user.errors.full_message }
+    end
     redirect_to @user
   end
 
@@ -10,11 +15,20 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: params[:user_id])
+    @user = User.find_by(id: params[:id])
+  end
+
+  def destroy
+    @user = User.find_by(id: id)
+    @user.destroy
+    # message =  "User has been deleted."
+    # json render: { message: message }
+    puts "------"
+    puts "*******"
   end
 
   private
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :user_name, :location, :is_personal_confirm, :personal_confirm_date, :is_active)
+    params.require(:user).permit(:first_name, :last_name, :email)
   end
 end

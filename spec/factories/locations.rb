@@ -10,10 +10,10 @@
 #  updated_at :datetime         not null
 #
 
-require 'test_helper'
-
-class LocationTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+FactoryBot.define do
+  factory :location do
+    title 'Work'
+    longitude '41.015137'
+    latitude '28.979530'
+  end
 end

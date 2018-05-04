@@ -4,7 +4,8 @@ class CreateUserLocations < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :latitude_x
       t.string :longitude_y
-      t.references :user
+      t.references :user, foreign_key: true
+      t.references :location, foreign_key: true
 
       t.timestamps
     end

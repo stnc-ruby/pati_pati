@@ -9,14 +9,17 @@
 #  help_status :integer
 #  help_type   :integer
 #  status      :integer
+#  user_id     :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  location_id :integer
 #
 
-require 'test_helper'
-
-class AnnouncementTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+FactoryBot.define do
+  factory :announcement do
+    user_id 1
+    location do
+      FactoryBot.create(:location)
+    end
+  end
 end

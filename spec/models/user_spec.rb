@@ -27,20 +27,23 @@
 #  last_sign_in_ip        :string
 #
 
-class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+require 'rails_helper'
 
-  has_many :user_locations
-  has_many :locations, through: :user_locations
+RSpec.describe User, type: :model do
+  context 'validations' do
+    it { is_expected.to validate_presence_of(:first_name) }
+    it { is_expected.to validate_presence_of(:last_name) }
+    it { is_expected.to validate_presence_of(:email) }
+  end
 
-  has_many :announcements
-  has_many :supporters
+  context 'associations' do
+    it { is_expected.to have_many(:announcements) }
+    it { is_expected.to have_many(:user_locations) }
+    it { is_expected.to have_many(:locations).through(:user_locations) }
+    it { is_expected.to have_many(:supporters)}
+  end
 
-  enum type: %i(animal_lover veterinarian)
-
-  validates :first_name, :last_name, :email, presence: true
-  # validates :first_name, :last_name, :email, :user_name, :location, :is_personal_confirm, :personal_confirm_date, :is_active, presence: true
+  context 'enums' do
+    it { is_expected.to define_enum_for(:type).with(%i(animal_lover veterinarian)) }
+  end
 end

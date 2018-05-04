@@ -12,7 +12,9 @@
 #  updated_at  :datetime         not null
 #
 
-class UserLocation < ApplicationRecord
-  belongs_to :user
-  belongs_to :location
+FactoryBot.define do
+  factory :user_location do
+    user_id 1
+    location_id 1
+  end
 end
