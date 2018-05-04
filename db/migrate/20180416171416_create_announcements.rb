@@ -7,6 +7,7 @@ class CreateAnnouncements < ActiveRecord::Migration[5.1]
       t.integer :help_status
       t.integer :help_type
       t.integer :status
+      t.references :user
 
       t.timestamps
     end

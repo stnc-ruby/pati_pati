@@ -12,7 +12,11 @@
 #  updated_at  :datetime         not null
 #
 
-class UserLocation < ApplicationRecord
-  belongs_to :user
-  belongs_to :location
+require 'rails_helper'
+
+RSpec.describe UserLocation, type: :model do
+  context 'associations' do    
+    it { is_expected.to belong_to(:user) }
+    it { is_expected.to belong_to(:location) }
+  end
 end
