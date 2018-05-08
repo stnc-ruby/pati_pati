@@ -86,6 +86,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    cowsay (0.3.0)
     crass (1.0.4)
     devise (4.4.0)
       bcrypt (~> 3.0)
@@ -291,6 +292,7 @@ DEPENDENCIES
   cancancan
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
+  cowsay
   devise
   factory_bot_rails
   faker
