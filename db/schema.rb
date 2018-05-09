@@ -10,26 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180504081217) do
+ActiveRecord::Schema.define(version: 20180509155316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
-  create_table "active_admin_comments", force: :cascade do |t|
+  create_table "active_admin_comments", id: false, force: :cascade do |t|
     t.string "namespace"
     t.text "body"
     t.string "resource_type"
-    t.bigint "resource_id"
     t.string "author_type"
-    t.bigint "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
+    t.uuid "id", default: -> { "uuid_generate_v4()" }
+    t.uuid "resource_id"
+    t.uuid "author_id"
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
-    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
   end
 
-  create_table "admin_users", force: :cascade do |t|
+  create_table "admin_users", id: false, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -42,23 +42,23 @@ ActiveRecord::Schema.define(version: 20180504081217) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "id", default: -> { "uuid_generate_v4()" }
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "announcements", force: :cascade do |t|
+  create_table "announcements", id: false, force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.integer "animal_type"
     t.integer "help_status"
     t.integer "help_type"
     t.integer "status"
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "location_id"
-    t.index ["location_id"], name: "index_announcements_on_location_id"
-    t.index ["user_id"], name: "index_announcements_on_user_id"
+    t.uuid "id", default: -> { "uuid_generate_v4()" }
+    t.uuid "user_id"
+    t.uuid "location_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -67,33 +67,31 @@ ActiveRecord::Schema.define(version: 20180504081217) do
     t.string "latitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "id_uuid", default: -> { "uuid_generate_v4()" }
   end
 
-  create_table "supporters", force: :cascade do |t|
-    t.bigint "user_id"
+  create_table "supporters", id: false, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_supporters_on_user_id"
+    t.uuid "id", default: -> { "uuid_generate_v4()" }
+    t.uuid "user_id"
   end
 
-  create_table "user_locations", force: :cascade do |t|
+  create_table "user_locations", id: false, force: :cascade do |t|
     t.string "name"
     t.string "latitude_x"
     t.string "longitude_y"
-    t.bigint "user_id"
-    t.bigint "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["location_id"], name: "index_user_locations_on_location_id"
-    t.index ["user_id"], name: "index_user_locations_on_user_id"
+    t.uuid "id", default: -> { "uuid_generate_v4()" }
+    t.uuid "user_id"
+    t.uuid "location_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: false, force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "phone_number"
-    t.string "location"
-    t.string "location_json"
     t.integer "device_id"
     t.integer "type"
     t.boolean "is_personal_confirm"
@@ -111,11 +109,10 @@ ActiveRecord::Schema.define(version: 20180504081217) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.uuid "id", default: -> { "uuid_generate_v4()" }
+    t.uuid "location_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "announcements", "locations"
-  add_foreign_key "user_locations", "locations"
-  add_foreign_key "user_locations", "users"
 end
