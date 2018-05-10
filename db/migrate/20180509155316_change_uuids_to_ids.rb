@@ -10,6 +10,9 @@ class ChangeUuidsToIds < ActiveRecord::Migration[5.1]
     remove_column :announcements, :id
     rename_column :announcements, :id_uuid, :id
 
+    remove_column :locations, :id
+    rename_column :locations, :id_uuid, :id
+
     remove_column :supporters, :id
     rename_column :supporters, :id_uuid, :id
 
