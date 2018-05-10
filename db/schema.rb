@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(version: 20180509155316) do
 
   create_table "locations", id: false, force: :cascade do |t|
     t.string "title"
-    t.string "longitude"
-    t.string "latitude"
+    t.string "longitude_x"
+    t.string "latitude_y"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "id", default: -> { "uuid_generate_v4()" }
@@ -78,9 +78,6 @@ ActiveRecord::Schema.define(version: 20180509155316) do
   end
 
   create_table "user_locations", id: false, force: :cascade do |t|
-    t.string "name"
-    t.string "latitude_x"
-    t.string "longitude_y"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "id", default: -> { "uuid_generate_v4()" }
