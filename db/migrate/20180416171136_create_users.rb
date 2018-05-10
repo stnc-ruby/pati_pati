@@ -4,8 +4,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :first_name
       t.string :last_name
       t.string :phone_number
-      t.string :location
-      t.string :location_json
+      t.integer :location_id
       t.integer :device_id
       t.integer :type
       t.boolean :is_personal_confirm
