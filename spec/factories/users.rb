@@ -2,12 +2,9 @@
 #
 # Table name: users
 #
-#  id                     :integer          not null, primary key
 #  first_name             :string
 #  last_name              :string
 #  phone_number           :string
-#  location               :string
-#  location_json          :string
 #  device_id              :integer
 #  type                   :integer
 #  is_personal_confirm    :boolean
@@ -25,6 +22,8 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string
 #  last_sign_in_ip        :string
+#  id                     :uuid
+#  location_id            :uuid
 #
 
 FactoryBot.define do

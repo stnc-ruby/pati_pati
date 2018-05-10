@@ -61,13 +61,13 @@ ActiveRecord::Schema.define(version: 20180509155316) do
     t.uuid "location_id"
   end
 
-  create_table "locations", force: :cascade do |t|
+  create_table "locations", id: false, force: :cascade do |t|
     t.string "title"
     t.string "longitude"
     t.string "latitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.uuid "id_uuid", default: -> { "uuid_generate_v4()" }
+    t.uuid "id", default: -> { "uuid_generate_v4()" }
   end
 
   create_table "supporters", id: false, force: :cascade do |t|
