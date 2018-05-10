@@ -2,12 +2,12 @@
 #
 # Table name: locations
 #
-#  title      :string
-#  longitude  :string
-#  latitude   :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  id         :uuid
+#  title       :string
+#  longitude_x :string
+#  latitude_y  :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  id          :uuid
 #
 
 require 'rails_helper'
