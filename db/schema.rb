@@ -50,10 +50,10 @@ ActiveRecord::Schema.define(version: 20180509155316) do
   create_table "announcements", id: false, force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.integer "animal_type"
-    t.integer "help_status"
-    t.integer "help_type"
     t.integer "status"
+    t.integer "help_type"
+    t.integer "animal_type"
+    t.integer "urgent_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "id", default: -> { "uuid_generate_v4()" }

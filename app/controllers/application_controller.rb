@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  def find_announcement
+    @announcement = Announcement.find_by(id: params[:id])
+    render_json(:announcement_not_found) unless @announcement
+  end
+
   # before_action :restrict_access
 
   # APP_KEY = '340a74c924045500d98970a7e65e1c7c'.freeze

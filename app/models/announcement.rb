@@ -22,8 +22,8 @@ class Announcement < ApplicationRecord
   belongs_to :user
   belongs_to :location
 
-  enum animal_type: %i(dog cat other)
-  enum help_status: %i(urgent_waiting_for_help waiting_for_help being_help)
+  enum status: %i(waiting_for_confirmation waiting_for_help helping done) #onay için bekliyor, yardım bekliyor, yardım ediliyor, kapandı
   enum help_type: %i(take_a_vet require_home require_money other_helps)
-  enum status: %i(waiting_for_approval approved being_on_help done)
+  enum animal_type: %i(dog cat other)
+  enum urgent_type: %i(urgent normal not_urgent)
 end

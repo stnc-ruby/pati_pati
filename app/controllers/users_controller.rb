@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      @user.update(is_personal_confirm: true)
       message = "User saved."
       json render: { message: message }
     else
@@ -29,6 +30,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email)
+    params.require(:user).permit(:first_name, :last_name, :phone_number, :device_id, :type, :is_personal_confirm, :is_active, :email)
   end
 end
