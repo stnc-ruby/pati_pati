@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+  api_v1_response_codes:
+    user_not_found: User not found!
+

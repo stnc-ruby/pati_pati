@@ -34,6 +34,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'activeadmin'
 gem 'devise'
 gem 'cancancan'
+gem 'geocoder'
 
 gem 'rubocop', '~> 0.55.0', require: false
 

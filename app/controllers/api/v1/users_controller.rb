@@ -17,15 +17,15 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    return render_json(:user_not_found, 422) unless @user
   end
 
   def destroy
+    unless User.find_by(id: id)
     @user = User.find_by(id: id)
     @user.destroy
-    # message =  "User has been deleted."
-    # json render: { message: message }
-    # puts "------"
-    # puts "*******"
+    message =  "User has been deleted."
+    json render: { message: message }
   end
 
   private

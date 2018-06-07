@@ -1,8 +1,5 @@
 class AnnouncementsController < ApplicationController
-
   before_action :find_announcement, only: %i(show make_done assign_user_to_announcement)
-
-
 
   def create
     @announcement = Announcement.new(announcement_params)
@@ -12,7 +9,7 @@ class AnnouncementsController < ApplicationController
       render_json(@announcement_update_success, 200)
     else
       render json:{ errors: @announcement.errors.full_message } , status: 422
-      render_json
+      # render_json
     end
   end
 

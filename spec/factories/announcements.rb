@@ -2,17 +2,16 @@
 #
 # Table name: announcements
 #
+#  id          :uuid             not null, primary key
 #  title       :string
 #  description :text
-#  animal_type :integer
-#  help_status :integer
-#  help_type   :integer
 #  status      :integer
+#  help_type   :integer
+#  animal_type :integer
+#  urgent_type :integer
+#  user_id     :uuid
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  id          :uuid
-#  user_id     :uuid
-#  location_id :uuid
 #
 
 FactoryBot.define do
@@ -21,5 +20,6 @@ FactoryBot.define do
     location do
       FactoryBot.create(:location)
     end
+    status 3
   end
 end

@@ -2,12 +2,12 @@
 #
 # Table name: locations
 #
+#  id          :uuid             not null, primary key
 #  title       :string
-#  longitude_x :string
-#  latitude_y  :string
+#  longitude_x :float
+#  latitude_y  :float
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  id          :uuid
 #
 
 FactoryBot.define do

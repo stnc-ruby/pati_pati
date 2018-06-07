@@ -2,14 +2,15 @@
 #
 # Table name: users
 #
+#  id                     :uuid             not null, primary key
 #  first_name             :string
 #  last_name              :string
 #  phone_number           :string
 #  device_id              :integer
-#  type                   :integer
 #  is_personal_confirm    :boolean
 #  personal_confirm_date  :datetime
 #  is_active              :boolean          default(FALSE)
+#  is_veterinarian        :boolean          default(FALSE)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  email                  :string           default(""), not null
@@ -22,8 +23,6 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string
 #  last_sign_in_ip        :string
-#  id                     :uuid
-#  location_id            :uuid
 #
 
 require 'rails_helper'
@@ -36,13 +35,8 @@ RSpec.describe User, type: :model do
   end
 
   context 'associations' do
-    it { is_expected.to have_many(:announcements) }
     it { is_expected.to have_many(:user_locations) }
     it { is_expected.to have_many(:locations).through(:user_locations) }
-    it { is_expected.to have_many(:supporters)}
-  end
-
-  context 'enums' do
-    it { is_expected.to define_enum_for(:type).with(%i(animal_lover veterinarian)) }
+    it { is_expected.to have_many(:announcements) }
   end
 end
